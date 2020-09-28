@@ -1,5 +1,8 @@
 ### Hi there 👋
 
+kono sekai wa subete o hakai suru
+ore wa kyojin o korose, ipikki nokorazu
+
 <!--
 **PERES-Richard/PERES-Richard** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
