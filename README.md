@@ -1,7 +1,7 @@
 ### Hi there 👋
 
-kono sekai wa subete o hakai suru
-ore wa kyojin o korose, ipikki nokorazu
+Hello everybody and welcome on my Github profile !  
+Please make yourself at home ✌
 
 <!--
 **PERES-Richard/PERES-Richard** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
