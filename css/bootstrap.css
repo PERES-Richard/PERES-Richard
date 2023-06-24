@@ -717,7 +717,8 @@ textarea {
     display: block !important;
     margin-left: auto;
     margin-right: auto;
-    padding: 2vh 6vh !important
+    padding: 2vh 6vh !important;
+    margin-bottom: 5%
 }
 
 .btnProjet {
