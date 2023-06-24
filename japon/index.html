@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="shortcut icon" href="img/icon.png" />
+
+
+  <meta name="author" content="Richard Peres" />
+  <meta name="description" content="Toutes les informations sur mon voyage au Japon de juillet/aout 2018 !" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Richard PERES" />
+  <meta property="og:url" content="http://japon.richard-peres.xyz" />
+  <meta property="og:title" content="Richard PERES" />
+  <meta property="og:image" content="http://japon.richard-peres.xyz/images/logo.png" />
+  <meta property="og:description" content="Toutes les informations sur mon voyage au Japon de juillet/aout 2018 !" />
+
+  <meta name="twitter:image" content="http://japon.richard-peres.xyz/images/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Richard PERES" />
+  <meta name="twitter:description" content="Toutes les informations sur mon voyage au Japon de juillet/aout 2018 !" />
+
+  <title>Japon - Richard Peres</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/grayscale.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Japon</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#diapo">Diaporama</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#carte">Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#planning">Planning</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#photos">Photos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Header -->
+  <header class="masthead">
+    <div class="intro-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h1 class="brand-heading">⛩️ Japon ⛩️</h1>
+            <p class="intro-text">Aperçu de mon voyage au Japon 🗾⛩️
+              <br><span style="color: #9a9a9a">Richard Peres</span></p>
+            <a href="#diapo" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- About Section -->
+  <section id="diapo" class="content-section text-center" style="background-color: #232323;">
+
+    <h2 style="margin :-120px auto 4% auto">Diaporama</h2>
+
+    <iframe marginheight="0" marginwidth="0" class="diapo" src="https://flickrembed.com/cms_embed.php?source=flickr&layout=responsive&input=www.flickr.com/people/154130512@N06/&sort=2&by=user&theme=default_notextpanel&scale=fit&limit=250&skin=default&autoplay=true" scrolling="no" frameborder="0" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+    <script type="text/javascript">
+      function showpics() {
+        var a = $("#box").val();
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + a + "&tagmode=any&format=json&jsoncallback=?", function(a) {
+          $("#images").hide().html(a).fadeIn("fast"), $.each(a.items, function(a, e) {
+            $("<img/>").attr("src", e.media.m).appendTo("#images")
+          })
+        })
+      }
+
+    </script>
+
+  </section>
+
+  <!-- Map Section -->
+  <section class="carte" id="carte">
+    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1E2Ev9gCYpo_MLEacrXHVIzD6-uWSFWs7" width="100%" class="carte"></iframe>
+  </section>
+
+
+
+
+  <section id="planning" style="background-color: #212529">
+    <div class="container" style="padding: 50px 0">
+
+      <h2 style="display: block; margin: 55px auto; text-align: center">Planning</h2>
+
+      <table class="table table-striped table-hover table-dark table-bordered" style="margin: 0; text-align: center">
+        <thead>
+          <tr class="table-active">
+            <th scope="col">Date</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Descrition</th>
+<!--
+            <th scope="col">Trajet (km)</th>
+-->
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <th scope="row">1</th>
+            <td>Gifu</td>
+            <td>Tokyo + trajet Tokyo - Gifu</td>
+<!--
+            <td rowspan="3" style="vertical-align: middle">750</td>
+-->
+          </tr>
+
+          <tr>
+            <th scope="row">2</th>
+            <td>Gifu</td>
+            <td>Okuhida</td>
+          </tr>
+
+          <tr>
+            <th scope="row">3</th>
+            <td>Gifu</td>
+            <td>Hida-Furukawa + Takayama</td>
+<!--
+            <td>400</td>
+-->
+          </tr>
+
+          <tr>
+            <th scope="row">4</th>
+            <td>Gifu</td>
+            <td>Shirakawa-go + trajet Gifu - Nagoya</td>
+<!--
+            <td rowspan="2" style="vertical-align: middle">360</td>
+-->
+          </tr>
+
+          <tr>
+            <th scope="row">5</th>
+            <td>Nagoya</td>
+            <td>Ogaki</td>
+          </tr>
+
+          <tr>
+            <th scope="row">6</th>
+            <td>Kyoto</td>
+            <td>Amanohashidate</td>
+<!--
+            <td rowspan="4" style="vertical-align: middle">540</td>
+-->
+          </tr>
+
+          <tr>
+            <th scope="row">7</th>
+            <td>Kyoto</td>
+            <td>Arashiyama</td>
+          </tr>
+
+          <tr>
+            <th scope="row">8</th>
+            <td>Kyoto</td>
+            <td>Mont Kurama</td>
+          </tr>
+
+          <tr>
+            <th scope="row">9</th>
+            <td>Kyoto</td>
+            <td>Kiyomizu dera + Gion + Pavillon d’or</td>
+          </tr>
+
+          <tr>
+            <th scope="row">10</th>
+            <td>Osaka</td>
+            <td>Cascade de Minoo + Dotonbori</td>
+<!--
+            <td rowspan="2" style="vertical-align: middle">450</td>
+-->
+          </tr>
+
+          <tr>
+            <th scope="row">11</th>
+            <td>Osaka ⇒ Shimanami</td>
+            <td>Passage à Kobe puis vélo</td>
+          </tr>
+
+          <tr>
+            <th scope="row">12</th>
+            <td>Shimanami ⇒ Shikoku ⇒ Osaka</td>
+            <td>Visite un peu Shikoku + Osaka -> Château et Ville</td>
+<!--
+            <td rowspan="2" style="vertical-align: middle">720</td>
+-->
+          </tr>
+
+          <tr>
+            <th scope="row">13</th>
+            <td>Osaka</td>
+            <td>Koyasan + Départ François</td>
+          </tr>
+
+<!--          <tr>
+            <td colspan="3" align="right">Total :</td>
+            <td class="bg-danger">4 520</td>
+            </tr>-->
+
+          <tr>
+            <th scope="row">14</th>
+            <td>Nara / Kurashiki</td>
+            <td> Nara puis trajet Nara - Hiroshima en passant pas Kurashiki</td>
+          </tr>
+
+          <tr>
+            <th scope="row">15</th>
+            <td>Hiroshima</td>
+            <td>Visite Hiroshima puis départ vers Omoricho</td>
+          </tr>
+
+          <tr>
+            <th scope="row">16</th>
+            <td>Omoricho</td>
+            <td>Visite de Omoricho et départ Matsue</td>
+          </tr>
+
+          <tr>
+            <th scope="row">17</th>
+            <td>Matsue</td>
+            <td>Visite de Matsue puis départ Amanohashidate (en passant par Tottori)</td>
+          </tr>
+
+          <tr>
+            <th scope="row">18</th>
+            <td>Amanohashidate / Nagoya</td>
+            <td>Trajet de Amanohashidate vers Nagoya</td>
+          </tr>
+
+          <tr>
+            <th scope="row">19</th>
+            <td>Nagoya / Hakone</td>
+            <td>Visite Nagoya et trajet Nagoya - Hakone</td>
+          </tr>
+
+          <tr>
+            <th scope="row">20</th>
+            <td>Hakone / Tokyo</td>
+            <td>Visite de Hakone puis départ pour Tokyo en passant par Kamakura et Yokohama</td>
+          </tr>
+
+          <tr>
+            <th scope="row">Du 21 au 1er</th>
+            <td>Tokyo</td>
+            <td>Visite de Tokyo (Akihabara, Ueno, Shinjuku, ...)</td>
+          </tr>
+
+          <tr>
+            <th scope="row">2</th>
+            <td>Retour</td>
+            <td>Départ pour la France à 8h10, arrivé 19h30</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+  </section>
+
+
+
+  <!-- Contact Section -->
+  <section id="photos" class="content-section text-center" style="background-color: #232323;">
+
+    <h2 style="margin : -100px auto 75px auto">Photos</h2>
+
+    <div id="flickrembed_24"></div>
+
+    <script src='https://flickrembed.com/embed_v2.js.rand.php?container=flickrembed_24&source=flickr&layout=responsive&input=154130512@N06&sort=2&by=user&theme=tiles_nested&scale=fit&limit=250&skin=alexis-light&autoplay=true'></script>
+
+    <script type="text/javascript">
+      function showpics() {
+        var a = $("#box").val();
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + a + "&tagmode=any&format=json&jsoncallback=?", function(a) {
+          $("#images").hide().html(a).fadeIn("fast"), $.each(a.items, function(a, e) {
+            $("<img/>").attr("src", e.media.m).appendTo("#images")
+          })
+        })
+      }
+
+    </script>
+  </section>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>Copyright &copy; Richard Peres 2018</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="js/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/grayscale.min.js"></script>
+
+</body>
+
+</html>
