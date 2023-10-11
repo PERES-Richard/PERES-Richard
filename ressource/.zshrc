@@ -5,12 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Live History suggestion (https://github.com/marlonrichert/zsh-autocomplete) -> see below
-zstyle ':autocomplete:tab:*' widget-style menu-select
-zstyle ':autocomplete:*' fzf-completion yes
-zstyle ':autocomplete:*' insert-unambiguous yes
-source ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete/.zshrc
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -93,6 +87,7 @@ helm
 #history-substring-search
 jsontools ## pretty print json pp_json
 kubectl
+#kubectl-autocomplete
 node
 npm
 #pip
@@ -104,6 +99,7 @@ zsh-autosuggestions
 zsh-syntax-highlighting
 #zsh-navigation-tools
 zsh-completions
+zsh-autocomplete
 )
 
 autoload -U compinit && compinit
@@ -112,18 +108,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+## Config for zsh-autocomplete
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' default-context history-incremental-search-backward
+zstyle ':autocomplete:tab:*' widget-style menu-select
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 
 ## Alias
@@ -150,7 +139,7 @@ alias .....='cd ../../../../'
 alias r="omz reload"
 alias m="micro"
 alias mz="micro ~/.zshrc && r"
-alias ag="apt-get install"
+alias ag="apt-get install -y"
 alias apd="apt-get update"
 alias apg="apt-get upgrade"
 alias cat="bat"
@@ -173,15 +162,16 @@ alias dps="docker ps"
 ## Kubernetes
 alias k="kubectl"
 alias kg="kubectl get"
-alias ns="HTTPS_PROXY=localhost:8888 kubens"
-alias ctx="HTTPS_PROXY=localhost:8888 kubectx"
-alias kcns="HTTPS_PROXY=localhost:8888 kubectl create namespace"
+alias ns="kubens"
+alias ctx="kubectx"
+alias kcns="kubectl create namespace"
 alias kaff="cat << EOF | kaf -"
-alias kdelf="HTTPS_PROXY=localhost:8888 kubectl delete --force"
-alias kk="HTTPS_PROXY=localhost:8888 kubectl kustomize"
-alias kak="HTTPS_PROXY=localhost:8888 kubectl apply -k"
+alias kdelf="kubectl delete --force"
+alias kk="kubectl kustomize"
+alias kak="kubectl apply -k"
+alias ns="kubens"
+alias ctx="kubectx"
 export KUBE_EDITOR="micro"
-alias gcp="gcloud"
 ##
 
 ## Helm
@@ -192,24 +182,12 @@ alias heu="helm repo update"
 alias hel="helm list"
 ##
 
-## AK Proxy
-alias akaf="ak apply -f"
-alias akdf="ak delete -f"
-alias akd="ak delete"
-alias akg="ak get"
-alias akd="ak describe"
-alias gcpa="gcloud auth login"
-alias ah='HTTPS_PROXY=localhost:8888 helm'
-alias ak='HTTPS_PROXY=localhost:8888 kubectl'
-alias an='HTTPS_PROXY=localhost:8888 nomos'
-alias ak9s='HTTPS_PROXY=localhost:8888 k9s'
-##
-
-## Terraform
+## Git
 alias pcr='pre-commit run -a'
 ##
 
 #┬áGCloud
+alias gcp="gcloud"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # ArgoCD CLI auto complete
@@ -245,37 +223,17 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 ##
 
-get-my-ip() {
+my-ip() {
 	IP=$(curl -s ifconfig.me)
 	echo $IP
 	echo $IP | xclip
 }
-
-get-pod-image() {
-	POD_NAME_PATTERN=$1
-
-	POD_NAME=$(ak get pod -A --no-headers=true | awk -v pattern="$POD_NAME_PATTERN" '{if ($2 ~ pattern) print $2}' | grep -m 1 "")
-	NS=$(ak get pod -A --no-headers=true | awk -v pattern="$POD_NAME_PATTERN" '{if ($2 ~ pattern) print $1}' | grep -m 1 "")
-	echo "Pod = $POD_NAME in namespace $NS"
-	ak get pod -n $NS $POD_NAME -o yaml | yq '.spec.containers[1].image'
-}
-alias gpi="get-pod-image"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-## Live History key map override
-# Up arrow
-bindkey '\e[A' up-line-or-search
-bindkey '\eOA' up-line-or-search
-
-# Down arrow:
-bindkey '\e[B' down-line-or-select
-bindkey '\eOB' down-line-or-select
-
 
 ## Bash CheatSheet
 # https://devhints.io/bash 
@@ -303,25 +261,25 @@ bindkey '\eOB' down-line-or-select
 # `git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions`
 # `git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete`
 
-## Setup zsh-autocomplete
+## Setup zsh-autocomplete (https://github.com/marlonrichert/zsh-autocomplete)
 # echo "skip_global_compinit=1" > .zshenv
-# + change line 68 to ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# + add zstyle ':autocomplete:tab:*' widget-style menu-complete
 
 ## Install lsd instead of ls
-# wget https://github.com/Peltoche/lsd/releases/download/0.21.0/lsd_0.21.0_amd64.deb
-# dpkg -i lsd_0.21.0_amd64.deb
+# wget https://github.com/Peltoche/lsd/releases/download/1.0.0/lsd_1.0.0_amd64.deb
+# dpkg -i lsd_1.0.0_amd64.deb
 
 ## Install batcat instead of cat (https://github.com/sharkdp/bat)
-# wget "https://github.com/sharkdp/bat/releases/download/v0.21.0/bat-musl_0.21.0_amd64.deb"
-# sudo dpkg -i bat-musl_0.21.0_amd64.deb
+# wget "https://github.com/sharkdp/bat/releases/download/v0.23.0/bat-musl_0.23.0_amd64.deb"
+# sudo dpkg -i bat-musl_0.23.0_amd64.deb
 
 ## Add Azure CLI completion
 # wget https://raw.githubusercontent.com/Azure/azure-cli/dev/az.completion -O /etc/bash_completion.d/azure-cli
 
-## Enable xclip from windows system32 & idea
+## Enable xclip from windows system32
 # ln -s /mnt/c/Windows/System32/clip.exe /usr/bin/xclip
-# ln -s /mnt/c/Program\ Files/JetBrains/IntelliJ\ IDEA\ 2022.1.3/bin/idea64.exe /usr/bin/idea
+
+## Add idea
+# ln -s /mnt/c/Program\ Files/JetBrains/IntelliJ\ IDEA\ 202**/bin/idea64.exe /usr/bin/idea
 
 ## Install kubectx & kubens
 # sudo apt-get install fzf -y
@@ -334,3 +292,9 @@ bindkey '\eOB' down-line-or-select
 # ln -s /opt/kubectx/completion/_kubens.zsh ~/.oh-my-zsh/completions/_kubens.zsh
 
 ### Install end ###
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/.zshrc-alpian
