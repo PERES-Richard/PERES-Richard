@@ -243,6 +243,7 @@ my-ip() {
 ## Get micro editor
 # curl https://getmic.ro | bash
 # sudo mv micro /usr/bin/
+# (in case of copy/paste issue on Windows Termnial, use set clipboard terminal in micro
 
 ## Setup Zsh & p10k
 # https://dev.to/abdfnx/oh-my-zsh-powerlevel10k-cool-terminal-1no0
@@ -296,5 +297,3 @@ my-ip() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-source ~/.zshrc-alpian
