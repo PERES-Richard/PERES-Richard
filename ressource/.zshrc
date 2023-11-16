@@ -146,7 +146,6 @@ alias cat="bat"
 alias catp="bat --paging=never"
 alias catpp="bat --paging=never -p"
 
-
 ## Docker
 alias d="docker"
 alias dc="docker-compose"
@@ -157,6 +156,15 @@ alias ds="docker start"
 alias de="docker exec"
 alias da="docker attach"
 alias dps="docker ps"
+##
+
+## Lint & Vuln Scan
+alias kubesec="docker run -i --pull always kubesec/kubesec:v2 scan /dev/stdin <"
+alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock --pull always wagoodman/dive"
+alias trivy="docker run  -v /var/run/docker.sock:/var/run/docker.sock --pull always ghcr.io/aquasecurity/trivy image"
+alias dlint="docker run --rm -i  --pull always hadolint/hadolint <"
+alias superlinter="docker run -e RUN_LOCAL=true -e USE_FIND_ALGORITHM=true -e IGNORE_GITIGNORED_FILES=true -v $PWD:/tmp/lint -w /tmp/lint --pull always ghcr.io/super-linter/super-linter:v5"
+alias kics="docker run -t -v $PWD:/path --pull always checkmarx/kics:latest scan -p /path -o /path/"
 ##
 
 ## Kubernetes
@@ -186,7 +194,7 @@ alias hel="helm list"
 alias pcr='pre-commit run -a'
 ##
 
-#┬áGCloud
+## GCloud
 alias gcp="gcloud"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
