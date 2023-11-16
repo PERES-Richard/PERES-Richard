@@ -163,8 +163,8 @@ alias kubesec="docker run -i --pull always kubesec/kubesec:v2 scan /dev/stdin <"
 alias dive="docker run -ti --rm  -v /var/run/docker.sock:/var/run/docker.sock --pull always wagoodman/dive"
 alias trivy="docker run  -v /var/run/docker.sock:/var/run/docker.sock --pull always ghcr.io/aquasecurity/trivy image"
 alias dlint="docker run --rm -i  --pull always hadolint/hadolint <"
-alias superlinter="docker run -e RUN_LOCAL=true -e USE_FIND_ALGORITHM=true -e IGNORE_GITIGNORED_FILES=true -v $PWD:/tmp/lint -w /tmp/lint --pull always ghcr.io/super-linter/super-linter:v5"
-alias kics="docker run -t -v $PWD:/path --pull always checkmarx/kics:latest scan -p /path -o /path/"
+alias superlinter='docker run -e RUN_LOCAL=true -e USE_FIND_ALGORITHM=true -e IGNORE_GITIGNORED_FILES=true -v "$(pwd)":/tmp/lint -w /tmp/lint --pull always ghcr.io/super-linter/super-linter:v5'
+alias kics='docker run -t -v "$(pwd)":/path --pull always checkmarx/kics:latest scan -p /path -o /path/'
 ##
 
 ## Kubernetes
