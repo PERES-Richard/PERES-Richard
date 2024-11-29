@@ -114,6 +114,16 @@ svg:not(:root) {
     color: white;
 }
 
+.btn-sophia {
+    border-color: #e3295c !important;
+    color: #e3295c;
+}
+
+.btn-sophia:hover {
+    background-color: #e3295c;
+    color: white;
+}
+
 @media (orientation: portrait) {
     .header-bullet {
         display: inherit !important;
